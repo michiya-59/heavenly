@@ -12,6 +12,7 @@ gem "sprockets-rails"
 # gem "turbo-rails"
 gem "bcrypt", "~> 3.1.7"
 gem "bootsnap", require: false
+gem "dartsass-rails", "~> 0.5.0"
 gem "dotenv-rails"
 gem "image_processing", "~> 1.2"
 gem "jbuilder"
