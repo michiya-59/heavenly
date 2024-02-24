@@ -1,1 +1,501 @@
-// Sassy
+@import "destyle";
+
+$breakpoint: (
+  sp_320: 'screen and (max-width: 320px)', // 320ピクセル以下のスマートフォン向けのスタイル
+  sp_375: 'screen and (max-width: 375px)', // 375ピクセル以下のスマートフォン向けのスタイル
+  sp_394: 'screen and (max-width: 394px)', // 375ピクセル以下のスマートフォン向けのスタイル
+  sp_430: 'screen and (max-width: 430px)', // 430ピクセル以下のスマートフォン向けのスタイル
+  sp: 'screen and (max-width: 767px)', // 767ピクセル以下のスマートフォン向けのスタイル
+  tab_820: 'screen and (max-width: 820px)', // 820ピクセル以下のスマートフォン向けのスタイル
+  tab: 'screen and (max-width: 1024px)' // 1024ピクセル以下のスマートフォン向けのスタイル
+);
+
+@mixin responsive_media($bp) {
+  @media #{map-get($breakpoint, $bp)} {
+    @content;
+  }
+}
+
+html {
+  font-size: 62.5%;
+  @media (max-width: 1024px) {
+    font-size: 50%; // タブレットサイズ
+  }
+  @media (max-width: 767px) {
+    font-size: 40%; // モバイルサイズ
+  }
+}
+
+body{
+  font-family: 'Tsukushi B Round Gothic';
+  margin: 0;
+}
+main{
+  overflow: hidden;
+}
+img {
+  width: 100%;
+  height: auto;
+}
+ul {
+  list-style: none ;
+}
+a {
+  transition: all 0.3s ease;
+}
+a:hover{
+  opacity: 0.6;
+}
+input, textarea{
+  border: 1px solid #AFAFAF;
+  padding: 0.3rem;
+}
+textarea{
+  padding: 1rem 2rem;
+}
+/*横幅900のひろいやつ*/
+.container {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 120rem;
+  padding: 0 5rem;
+}
+@media (max-width: 1200px) {
+  .container {
+    width: 92%;
+    padding: 0;
+  }
+}
+/*横幅660のせまいやつ*/
+.container-660 {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 66rem;
+}
+@media (max-width: 1000px) {
+  .container-660 {
+    width: 90%;
+    padding: 0;
+  }
+}
+/*横幅800のやつ*/
+.container-800 {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 90rem;/*ここを変える*/
+}
+@media (max-width: 1000px) {
+  .container-800 {
+    width: 90%;
+    padding: 0;
+  }
+}
+.back_btn{
+  display: inline-block;
+  margin-bottom: 5rem;
+  background: #48B9BC;
+  color: white;
+  text-decoration: none;
+  font-size: 2rem;
+  padding: 0.5rem 4rem;
+  border-radius: 1rem;
+}
+// ログイン画面
+.login_content{
+  background-image: url("sky.png");
+  height: 100vh;
+  vertical-align: middle;
+  text-align: center;
+  display: table-cell;
+  width: 100vw;
+  background-size: cover;
+  background-position: bottom;
+  .main_icon{
+    width: 25%;
+    margin: 0px auto;
+    margin-bottom: 3rem;
+    @include responsive_media(sp){
+      width: 45%;
+    }
+  }
+}
+.form_part{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  label{
+    font-size: 1.6rem;
+    color: white;
+    @include responsive_media(sp){
+      font-size: 2.5rem;
+    }
+  }
+  input{
+    text-align: left;
+    width: 25rem;
+    margin: 0 auto;
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid white;
+    margin-bottom: 2rem;
+    color: white;
+    font-size: 1.6rem;
+    margin-top: 1rem;
+    padding: 0.7rem;
+    @include responsive_media(sp){
+      font-size: 2.5rem;
+      width: 33rem;
+    }
+  }
+}
+.login_submit{
+  margin-top: 2rem;
+  background: white;
+  border: none;
+  padding: 0.8rem 6rem;
+  border-radius: 4rem;
+  color: #2DAEB2;
+  font-weight: bold;
+  font-size: 1.5rem;
+  @include responsive_media(sp){
+    padding: 1rem 9rem;
+  }
+}
+input:-internal-autofill-selected{
+  background-color: transparent !important;
+}
+// ログイン画面
+
+// ヘッダー
+.header{
+  display: flex;
+  background: #2DAEB2;
+  padding: 1rem 7.5%;
+  @include responsive_media(tab){
+    padding: 1rem 4%;
+  }
+  .header_left{
+    width: 8rem
+  }
+  .header_right{
+    display: flex;
+    margin-left: auto;
+    align-items: center;
+    li {
+      margin-left: 2rem;
+      a{
+        font-size: 2rem;
+        color: white;
+        text-decoration: none;
+      }
+    }
+    @include responsive_media(sp_320){
+      padding-left: 2rem;
+    }
+  }
+}
+// ヘッダー
+
+// カテゴリー一覧
+.user_name{
+  margin-top: 2rem;
+}
+.course_title{
+  font-size: 2rem;
+  margin: 4rem 0 5rem 0;
+  display: block;
+  @include responsive_media(sp){
+    margin-bottom: 0;
+  }
+}
+.course_part{
+  display: flex;
+  border-bottom: 1px solid gray;
+  padding: 2rem 1rem;
+  .course_left{
+    width: 6rem;
+    background: #979797;
+    padding: 1.5rem;
+    @include responsive_media(sp){
+      padding: 1.5rem 1rem 1rem 1rem;
+    }
+  }
+  .course_right{
+    margin-left: 1.5rem;
+    padding: 1rem 0;
+    a{
+      font-size: 2rem;
+      color: #56b0ff;
+    }
+    p{
+      font-size: 1.6rem;
+      margin: 1rem 0 0 0;
+    }
+    @include responsive_media(sp){
+      padding: 0rem 0;
+      line-height: 2rem;
+    }
+  }
+}
+// カテゴリー一覧
+
+// 動画詳細画面
+.course_detail_list{
+  margin-top: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  .course_detail_part{
+    width: 50%;
+    margin-bottom: 5rem;
+    @include responsive_media(sp){
+      width: 100%;
+    }
+    .video{
+      width:96%;
+      margin: 0 auto;
+      @include responsive_media(sp){
+        width: 100%;
+      }
+    }
+    strong{
+      font-size: 2rem;
+    }
+    p{
+      margin: 1rem 0;
+      font-size: 1.6rem;
+    }
+    .video_bottom{
+      padding: 0 1rem;
+    }
+  }
+  .video_relation_btn{
+    a:nth-child(1){
+      font-size: 2rem;
+      color: #48B9BC;
+      margin-right: 2rem;
+    }
+    a:nth-child(2){
+      font-size: 2rem;
+    }
+  }
+}
+#myVideo{
+  width: 100%;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0 0 0 / 67%);
+  animation-name: fadeIn;
+  animation-duration: 0.4s;
+  transition: opacity 0.4s ease; /* 透明度の変化にアニメーションを適用 */
+}
+
+.modal_content {
+  background-color: #fefefe;
+  margin: 10% auto;
+  padding: 5rem 6rem;
+  border: 1px solid #888;
+  width: 65%;
+  position: relative;
+  border-radius: 6px;
+  animation-name: slideIn;
+  animation-duration: 0.4s;
+  @include responsive_media(sp){
+    padding: 2rem 5rem;
+    width: 73%;
+  }
+  h2{
+    text-align: center;
+    font-size: 3rem;
+  }
+  label{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 1.6rem;
+    margin-bottom: 1rem;
+  }
+  .task_file{
+    @include responsive_media(sp){
+      width: -webkit-fill-available;
+    }
+  }
+  textarea{
+    border: 1px solid #B4B4B4;
+    height: 25rem;
+    width: 95%;
+    @include responsive_media(sp){
+      height: 17rem;
+      width: -webkit-fill-available;
+    }
+  }
+  .task_submit{
+    display: block;
+    background: #48B9BC;
+    color: white;
+    width: 20rem;
+    margin: 0 auto;
+    border: 0;
+    padding: 1rem 0;
+    border-radius: 7px;
+    margin-top: 3rem;
+  }
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem; /* モーダルの上端から1remの位置に設定 */
+  color: #aaa;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+}
+
+/* モーダル表示時のアニメーション */
+@keyframes fadeIn {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+
+@keyframes slideIn {
+  from {transform: translateY(-50px); opacity: 0;}
+  to {transform: translateY(0); opacity: 1;}
+}
+
+/* モーダル非表示時のアニメーション */
+@keyframes fadeOut {
+  from {opacity: 1;}
+  to {opacity: 0;}
+}
+
+@keyframes slideOut {
+  from {transform: translateY(0); opacity: 1;}
+  to {transform: translateY(-50px); opacity: 0;}
+}
+.showModal {
+  animation: fadeIn 0.4s, slideIn 0.4s;
+}
+
+.hideModal {
+  animation: fadeOut 0.4s, slideOut 0.4s;
+}
+
+// 動画詳細画面
+
+
+// エラーメッセージ スタイル
+.error{
+  display: flex;
+  margin: 0.3rem auto 2rem auto;
+  justify-content: center;
+  padding-right: 17rem;
+  padding-right: 32rem;
+  p{
+    color: #e61f00;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: inherit;
+  }
+  @include responsive_media(sp){
+    padding-right: 35rem;
+  }
+  @include responsive_media(tab_820){
+    padding-right: 25rem;
+  }
+  @include responsive_media(sp_394){
+    padding-right: 15rem;
+  }
+  @include responsive_media(sp_320){
+    padding-right: 10rem;  
+  }
+}
+.top_error{
+  display: flex;
+  margin: 2rem auto;
+  justify-content: center;
+  width: 32rem;
+  p{
+    color: #e61f00;
+    font-size: 1.4rem;
+    font-weight: bold;
+    font-family: inherit;
+    line-height: 2rem;
+  }
+}
+.error_icon{
+  line-height: 3rem;
+  width: 3rem;
+  margin-right: 1rem;
+}
+.error_icon_bottom{
+  width: 2rem;
+}
+.error_main{
+  padding: 10px;
+  border: 1px solid #ffc1c1;
+  background: #ffdddd;
+  font-size: 10px;
+  text-align: left;
+  width: 100%;
+  margin: 17px auto 0 0;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  p{
+    font-size: 12px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    color: #8c1818;
+  }
+  li{
+    color: #8c1818;
+    list-style: none;
+  }
+}
+.error_content{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.part_error{
+  color: #8c1818;
+  margin: 0;
+}
+.success_dsn{
+  text-align: center;
+  background: #55c500b8;
+  border-radius: 5px;
+  color: white;
+  opacity: 0.8;
+  padding: 12px 10px;
+  width: 50%;
+  margin: 1rem auto 1rem auto;
+  font-size: 1.5rem;
+  @include responsive_media(sp){
+    width: 100%;
+  }
+}
+.part_error_edit{
+  color: #8c1818;
+  margin: 0;
+}
+.display_moble {
+  display: block;
+  @include responsive_media(sp){
+    display: none;
+  }
+}
