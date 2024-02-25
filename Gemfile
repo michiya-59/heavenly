@@ -4,6 +4,8 @@ source "https://rubygems.org"
 
 ruby "3.2.1"
 
+gem "activestorage-cloudinary-service", "~> 0.2.3"
+gem "active_storage_validations" # 画像ファイルのバリデーション用
 gem "importmap-rails"
 gem "pg", "~> 1.1"
 gem "puma", ">= 5.0"
