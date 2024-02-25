@@ -1,0 +1,65 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "controllers/update_form_submit" %>
+<% end %>
+<p class="pankuzu">
+  <%= link_to 'トップページ', '#', class: 'common_a' %> >
+  <%= link_to '管理画面', admins_index_path, class: 'common_a' %> >
+  <%= link_to '学びの資料', learn_categories_path, class: 'common_a' %> >
+  <%= link_to '学びの資料 詳細', learns_path(id: session[:learn_category_id]), class: 'common_a' %> >
+  <%= @learn_category_name %> 学びの資料 詳細編集
+</p>
+<div class="common_field_title">
+  <h1><%= @learn_category_name %> 学びの資料 編集</h1>
+  <div class="underline"></div>
+</div>
+<div class="admin_laern_edit">
+  <%= form_with model: @learn, local: true, id: 'learnForm', data: { learn_id: @learn.id } do |form| %>
+    <%= render 'shared/error', object: @learn %>
+    <div class="learn_edit_part">
+      <%= form.label :name, "タイトル名<span>必須</span>".html_safe, class: "common_size16" %>
+      <%= form.text_field :name, class: "common_size16", maxlength: 16 %>
+      <p class="gray common_size13">※16文字以内で入力してください。</p>
+    </div>
+    <div class="learn_edit_part">
+      <%= form.label :order_num, "表示順<span>必須</span>".html_safe, class: "common_size16" %>
+      <%= form.select :order_num, options_for_select(@unused_order_nums, selected: @learn.order_num), {}, {class: "common_size16"} %>
+    </div>
+    <div class="learn_edit_part">
+      <%= form.label :document_file, "ファイル", class: "common_size16" %>
+      <% if @learn.document_file.attached? %>
+        <div class="dument_content">
+          <%= link_to rails_blob_path(@learn.document_file, disposition: "attachment"), class: "download_edit_btm" do %>
+            <i class="fas fa-download"></i> ファイルあり
+          <% end %>
+          <%= form.check_box :remove_document_file, class: "document_remove_checkbtn" %>
+        </div>
+      <% else %>
+        なし
+      <% end %>
+      <%= form.file_field :document_file, class: "common_size13 document_file mt-1", accept: ".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx" %>
+    </div>
+
+    <div class="learn_edit_part mt-3">
+      <%= form.label :video_file, "動画", class: "common_size16" %>
+      <% if @learn.video_file.attached? %>
+        <div class="dument_content">
+          <%= link_to rails_blob_path(@learn.video_file, disposition: "attachment"), class: "download_edit_btm" do %>
+            <i class="fas fa-download"></i> 動画あり
+          <% end %>
+          <%= form.check_box :remove_video_file, class: "document_remove_checkbtn" %>
+        </div>
+      <% else %>
+        なし
+      <% end %>
+      <%= form.file_field :video_file, class: "common_size13 video_file mt-1", accept: "video/mp4,video/x-m4v,video/*" %>
+    </div>
+    <div class="dument_content">
+      <%= form.check_box :delete_learn, class: "delete_learn_checkbtn" %>
+      <%= form.label :delete_learn, "学びの資料を削除する", class: "common_size16" %>
+    </div>
+    <div class="admin_submit_btn text_center common_merge">
+      <%= link_to '戻る', learns_path(id: session[:learn_category_id]), class: 'back_btn2 common_box_blue' %>
+      <%= form.submit "更新", class: "edit_btn common_box_blue", id: "update-button" %>
+    </div>
+  <% end %>
+</div>

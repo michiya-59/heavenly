@@ -1,4 +1,4 @@
-@import "destyle";
+// @import "destyle";
 
 $breakpoint: (
   sp_320: 'screen and (max-width: 320px)', // 320ピクセル以下のスマートフォン向けのスタイル
@@ -42,6 +42,7 @@ ul {
 }
 a {
   transition: all 0.3s ease;
+  text-decoration: none;
 }
 a:hover{
   opacity: 0.6;
@@ -90,6 +91,8 @@ textarea{
     padding: 0;
   }
 }
+
+// 共通
 .back_btn{
   display: inline-block;
   margin-bottom: 5rem;
@@ -100,6 +103,16 @@ textarea{
   padding: 0.5rem 4rem;
   border-radius: 1rem;
 }
+.common_size16{
+  font-size: 1.6rem;
+  @include responsive_media(sp){
+    font-size: 2rem;
+  }
+}
+
+// 共通
+
+
 // ログイン画面
 .login_content{
   background-image: url("sky.png");
@@ -283,7 +296,6 @@ input:-internal-autofill-selected{
 #myVideo{
   width: 100%;
 }
-
 .modal {
   display: none;
   position: fixed;
@@ -298,7 +310,6 @@ input:-internal-autofill-selected{
   animation-duration: 0.4s;
   transition: opacity 0.4s ease; /* 透明度の変化にアニメーションを適用 */
 }
-
 .modal_content {
   background-color: #fefefe;
   margin: 10% auto;
@@ -349,7 +360,6 @@ input:-internal-autofill-selected{
     margin-top: 3rem;
   }
 }
-
 .close {
   position: absolute;
   right: 1rem;
@@ -359,7 +369,6 @@ input:-internal-autofill-selected{
   font-weight: bold;
   cursor: pointer;
 }
-
 .close:hover,
 .close:focus {
   color: black;
@@ -371,18 +380,15 @@ input:-internal-autofill-selected{
   from {opacity: 0;}
   to {opacity: 1;}
 }
-
 @keyframes slideIn {
   from {transform: translateY(-50px); opacity: 0;}
   to {transform: translateY(0); opacity: 1;}
 }
-
 /* モーダル非表示時のアニメーション */
 @keyframes fadeOut {
   from {opacity: 1;}
   to {opacity: 0;}
 }
-
 @keyframes slideOut {
   from {transform: translateY(0); opacity: 1;}
   to {transform: translateY(-50px); opacity: 0;}
@@ -390,11 +396,9 @@ input:-internal-autofill-selected{
 .showModal {
   animation: fadeIn 0.4s, slideIn 0.4s;
 }
-
 .hideModal {
   animation: fadeOut 0.4s, slideOut 0.4s;
 }
-
 // 動画詳細画面
 
 
@@ -498,4 +502,341 @@ input:-internal-autofill-selected{
   @include responsive_media(sp){
     display: none;
   }
+}
+
+// 設定画面
+.common_field_title{
+  margin-bottom: 2rem;
+  h1{
+    font-size: 2rem;
+    text-align: center;
+    color: #5C5C5C;
+    margin-bottom: 1.3rem;
+    @include responsive_media(tab){
+      font-size: 3rem;
+    }
+  }
+}
+.underline::before ,.underline::after{
+  content: '';
+  display: block;
+  height: 1px;
+  background: #48B9BC;
+  width: 100%;
+}
+.underline::after {
+  margin-top: 3px;
+}
+.admin_lsit{
+  display: flex;
+  flex-wrap: wrap;
+  a{
+    height: 9rem;
+    line-height: 9rem;
+    font-size: 2rem;
+    font-weight: normal;
+    margin-right: 3.2rem;
+    margin-top: 2rem;
+  }
+  @include responsive_media(sp){
+    justify-content: space-between;
+    a{
+      margin: 2rem 0 0 0;
+    }
+  }
+}
+.pankuzu{
+  margin: 1.6rem 0;
+  color: #5C5C5C;
+  @include responsive_media(tab){
+    font-size: 2rem;
+  }
+  @include responsive_media(sp){
+    margin-bottom: 3rem;
+    font-size: 2rem;
+  }
+}
+.common_field_title{
+  margin-bottom: 2rem;
+  h1{
+    font-size: 2rem;
+    text-align: center;
+    color: #5C5C5C;
+    margin-bottom: 1.3rem;
+    @include responsive_media(tab){
+      font-size: 3rem;
+    }
+  }
+}
+.learn_add_categeory_part{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1rem;
+  width: 34rem;
+
+  label{
+    margin-bottom: 0.5rem;
+    span{
+      background: #C33;
+      border-radius: 0.5rem;
+      padding: 0.3rem 1rem;
+      margin-left: 0.9rem;
+      color: white;
+      font-size: 1.3rem;
+    }
+  }
+  select{
+    width: 20rem;
+    border: 1px solid #afafaf;
+  }
+  .text_box{
+    height: 3rem;
+    padding: 0 2rem;
+    height: 4rem;
+    border: 1px solid #afafaf;
+  }
+  .course_name{
+    width: 40rem;
+  }
+  .bonus_price{
+    width: 15rem;
+    margin-right: 1rem;
+  }
+}
+.admin_add_btn{
+  width: 34rem;
+  background: white;
+}
+.common_btn_content{
+  display: block;
+  width: 18.5rem;
+  height: 4rem;
+  border-radius: 0.5rem;
+  font-size: 1.7rem;
+  font-weight: bold;
+  text-align: center;
+  line-height: 3.8rem;
+  @include responsive_media(tab){
+    font-size: 2.5rem;
+    height: 6rem;
+    line-height: 5.5rem;
+    width: 25rem;
+  }
+  @include responsive_media(sp){
+    width: 23rem;
+    height: 5rem;
+    line-height: 4.5rem;
+    font-size: 2rem;
+  }
+}
+.common_box_blue{
+  border: 1px solid #48B9BC;
+  color: #48B9BC;
+}
+.common_btn_beige_background{
+  background: #48B9BC;
+  color: white;
+}
+.common_btn_shape{
+  border-radius: 0.5rem;
+  box-shadow: 1px 2px 7px 0px rgba(0, 0, 0, 0.25);
+}
+.common_merge{
+  margin: 5rem 0;
+}
+.admin_learn_content{
+  margin-top: 5rem;
+  .common_admin_list{
+    margin: 3rem 0 5rem 0;
+    .common_list_head{
+      display: flex;
+      border-bottom: 0.1rem solid #48B9BC;
+      padding-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    .common_list_body .common_list_body_part{
+      border-bottom: 1px dotted #CDCDCD;
+      display: flex;
+      line-height: 3rem;
+      padding: 1rem;
+      align-items: center;
+    }
+  }
+}
+.admin_category_list{
+  display: flex;
+  flex-wrap: wrap;
+  a{
+    margin: 0 2rem 1rem 0;
+  }
+}
+
+
+.common_admin_list .common_list_head,
+.common_admin_list .common_list_body_part {
+  display: flex;
+  justify-content: space-between;
+}
+
+.common_admin_list .common_list_head p,
+.common_admin_list .common_list_body_part p {
+  flex: 1; /* 各要素が均等にスペースを取るように設定 */
+  margin-right: 1rem; /* 要素間の間隔 */
+}
+
+.common_admin_list .common_list_head p.w6,
+.common_admin_list .common_list_body_part p.w6 {
+  flex: 0 0 5rem; /* インデックス番号の列の幅を固定 */
+}
+
+.common_admin_list .common_list_head p.w41,
+.common_admin_list .common_list_body_part p.w41 {
+  flex: 0 0 18rem; /* 追加日時の列の幅を少し狭く調整 */
+}
+
+.common_admin_list .common_list_head p:nth-child(3),
+.common_admin_list .common_list_body_part p:nth-child(3) {
+  flex: 0 0 23rem; /* カテゴリー名の列の幅を伸ばして設定 */
+  @include responsive_media(sp){
+    flex: 0 0 15rem; /* カテゴリー名の列の幅を伸ばして設定 */
+  }
+}
+
+.common_admin_list .common_list_body_part .edit_btn {
+  flex: 0 0 auto; /* 編集ボタンの幅は内容に応じて自動調整 */
+}
+
+/* 最後の要素のmargin-rightを削除 */
+.common_admin_list .common_list_head p:last-child,
+.common_admin_list .common_list_body_part p:last-child,
+.common_admin_list .common_list_body_part .edit_btn:last-child {
+  margin-right: 0;
+}
+.edit_btn, .add_btn, .confirm_btn, .delete_btn, .back_btn2{
+  background: white;
+  line-height: 2.6rem;
+  margin-left: auto;
+  font-size: 1.6rem;
+  width: 10%;
+  text-align: center;
+  margin-right: 1rem;
+  cursor: pointer;
+  @include responsive_media(sp){
+    line-height: 3.5rem;
+    width: 11rem;
+  }
+  &:hover{
+    opacity: 0.7;
+  }
+}
+.delete_btn, .back_btn2{
+  display: inline-block;
+  padding: 0.3rem;
+}
+.learn_add_part, .learn_edit_part, .task_form_part{
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+  label{
+    margin-bottom: 1rem;
+    span{
+      background: #C33;
+      border-radius: 0.5rem;
+      padding: 0.3rem 1rem;
+      margin-left: 0.9rem;
+      color: white;
+      font-size: 1.3rem;
+    }
+  }
+  select{
+    width: 20rem;
+  }
+  .text_box{
+    height: 3rem;
+    padding: 0 2rem;
+    height: 4rem;
+  }
+  .course_name{
+    width: 40rem;
+  }
+  .bonus_price{
+    width: 15rem;
+    margin-right: 1rem;
+  }
+}
+.learn_edit_part, .learn_add_part{
+  margin-bottom: 1rem;
+  label{
+    margin-bottom: 0.5rem;
+  }
+  input{
+    width: 34rem;
+    padding: 0.5rem 1rem;
+  }
+  .document_remove_checkbtn{
+    width: 2rem;
+    vertical-align: text-bottom;
+  }
+  p{
+    margin-bottom: 0;
+  }
+  .document_file, .video_file{
+    padding: 0;
+  }
+}
+.learn_edit_part:nth-child(3), .learn_add_part:nth-child(3){
+  margin-bottom: 3rem;
+}
+
+
+.common_admin_list {
+  display: flex;
+  flex-direction: column;
+}
+
+.common_list_head, .common_list_body_part {
+  display: flex;
+  align-items: center;
+}
+
+.common_list_head p, .common_list_body_part p {
+  margin: 0;
+  padding: 5px; /* 適切な間隔を提供 */
+  white-space: nowrap; /* 折り返しを防ぐ */
+}
+
+/* ヘッダーの幅を指定 */
+.common_list_head p {
+  flex: 1;
+  text-align: center;
+}
+
+.common_list_head p:nth-child(2) {
+  flex: 2; /* 追加日時の幅を広げる */
+}
+
+.common_admin_list .common_list_head p:nth-child(3), 
+.common_admin_list .common_list_head p:nth-child(4), 
+.common_admin_list .common_list_head p:nth-child(5), 
+.common_admin_list .common_list_head p:nth-child(6), 
+.common_admin_list .common_list_head p:nth-child(7) {
+  flex: 3; /* ファイル、動画、カテゴリー、タイトル、表示順の幅を広げる */
+}
+
+/* 各項目の幅をヘッダーに合わせる */
+.common_admin_list .common_list_body_part p {
+  flex: 1; /* 均等に分割 */
+  text-align: center;
+}
+
+.common_admin_list .common_list_body_part p:nth-child(2) {
+  flex: 2; /* 追加日時 */
+}
+
+.common_admin_list .common_list_body_part p:nth-child(3), 
+.common_admin_list .common_list_body_part p:nth-child(4), 
+.common_admin_list .common_list_body_part p:nth-child(5), 
+.common_admin_list .common_list_body_part p:nth-child(6), 
+.common_admin_list .common_list_body_part p:nth-child(7) {
+  flex: 3 ; /* その他の要素 */
 }

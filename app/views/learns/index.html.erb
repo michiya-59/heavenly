@@ -1,0 +1,110 @@
+<% content_for :js do %>
+  <%= javascript_import_module_tag "controllers/file_video_upload_validates" %>
+  <%= javascript_import_module_tag "controllers/file_video_upload_asynchronous" %>
+<% end %>
+
+<p class="pankuzu">
+  <%= link_to 'トップページ', '#', class: 'common_a' %> >
+  <%= link_to '管理画面', admins_index_path, class: 'common_a' %> >
+  <%= link_to '学びの資料', learn_categories_path, class: 'common_a' %> >
+  <%= @learn_category_name %> 学びの資料 詳細
+</p>
+<div class="admin_learn_add_contant">
+  <div class="common_field_title">
+    <h1><%= @learn_category_name %> 学びの資料 新規追加</h1>
+    <div class="underline"></div>
+  </div>
+
+  <%= form_with(model: @learn, url: learns_path, local: true) do |form| %>
+    <%= render 'shared/error', object: @learn %>
+    <% if flash[:success].present? %>
+      <p class="success_dsn"><i class="fa fa-check "></i><%= flash[:success] %><p>
+    <% end %>
+    <div class="admin_laern_add">
+      <div class="learn_add_part">
+        <%= form.label :name, "タイトル名<span>必須</span>".html_safe, class: "common_size16" %>
+        <%= form.text_field :name, class: "common_size16", maxlength: 30 %>
+        <p class="gray common_size13">※16文字以内で入力してください。</p>
+      </div>
+      <div class="learn_add_part">
+        <%= form.label :document_file, "ファイル", class: "common_size16" %>
+        <%= form.file_field :document_file, class: "common_size13 document_file", accept: ".pdf,.ppt,.pptx,.doc,.docx,.xls,.xlsx", 'data-max-file-size': 5.megabytes, 'data-file-type': 'document', 'data-allowed-types-display': 'PDF, PPT, PPTX, DOC, DOCX, XLS, XLSX' %>
+      </div>
+      <div class="learn_add_part">
+        <%= form.label :video_file, "動画", class: "common_size16" %>
+        <%= form.file_field :video_file, direct_upload: true, class: "common_size13 video_file", accept: "video/mp4,video/x-m4v,video/mov,video/*", 'data-max-file-size': 500.megabytes, 'data-file-type': 'video', 'data-allowed-types-display': 'MP4, M4V, MOV' %>
+      </div>
+      <div class="learn_add_part">
+        <%= form.label :order_num, "表示順<span>必須</span>".html_safe, class: "common_size16" %>
+        <%= form.select :order_num, options_for_select(@unused_order_nums), {}, {class: "common_size16"} %>
+      </div>
+      <%= form.submit "新規追加", class: "admin_add_btn common_btn_beige common_btn_content common_box_blue" %>
+    </div>
+  <% end %>
+</div>
+
+<div class="admin_learn_content">
+  <!-- 学びの資料のタイトル -->
+  <div class="common_field_title">
+    <h1><%= @learn_category_name %> 学びの資料一覧</h1>
+    <div class="underline"></div>
+  </div>
+
+  <!-- 学びの資料リスト -->
+  <div class="common_admin_list">
+    <!-- リストのヘッダ -->
+    <div class="common_list_head">
+      <p></p>
+      <p class="common_size16">ファイル</p>
+      <p class="common_size16">動画</p>
+      <p class="common_size16">カテゴリー</p>
+      <p class="common_size16">タイトル</p>
+      <p class="common_size16">表示順</p>
+      <p></p>
+    </div>
+
+    <!-- 学びの資料の各項目 -->
+    <% if @learn_infos.present? %>
+      <% @learn_infos.each_with_index do |learn, index| %>
+        <div class="common_list_body">
+          <div class="common_list_body_part">
+            <!-- インデックス -->
+            <p class="common_size16"><%= index + 1 %>.</p>
+            <!-- ファイルダウンロードリンク -->
+            <p class="common_size16">
+              <% if learn.document_file.attached? %>
+                <%= link_to rails_blob_path(learn.document_file, disposition: "attachment"), style: "color:#3899bb" do %>
+                  <i class="fas fa-download"></i>
+                <% end %>
+              <% else %>
+                なし
+              <% end %>
+            </p>
+            <!-- 動画ダウンロードリンク -->
+            <p class="common_size16">
+              <% if learn.video_file.attached? %>
+                <%= link_to rails_blob_path(learn.video_file, disposition: "attachment"), style: "color:#3899bb" do %>
+                  <i class="fas fa-download"></i>
+                <% end %>
+              <% else %>
+                なし
+              <% end %>
+            </p>
+            <!-- カテゴリー -->
+            <p class="common_size16""><%= learn.learn_category.name %></p>
+            <!-- タイトル -->
+            <p class="common_size16"><%= learn.name %></p>
+            <p class="common_size16"><%= learn.order_num %></p>
+            <!-- 編集リンク -->
+            <%= link_to '編集', edit_learn_path(learn), class: 'edit_btn common_box_blue' %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <p>学びの資料がありません。</p>
+    <% end %>
+  </div>
+
+</div>
+
+<%= link_to '戻る', learn_categories_path, class: 'common_btn_beige common_btn_beige_background common_btn_content common_merge' %>
